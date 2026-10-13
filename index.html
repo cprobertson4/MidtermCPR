@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MidtermCR</title>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+     
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    </head>
+
+    <body>
+        <div id="MidtermCR" style="height: 800px"></div>
+        
+        <script type="text/javascript"> 
+        var map = L.map('MidtermCR', {
+            center: [41.98105678095964, -87.71852732803784],
+            zoom: 16
+        });
+
+     
+        var lightGrayLayer = L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}',
+    {
+        attribution: 'Tiles &copy; <a href="https://www.esri.com/">Esri</a>',
+        maxZoom: 19,
+        minZoom: 8
+    }
+);
+
+var streetsLayer = L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        maxZoom: 19,
+		minZoom: 8
+    }
+);
+
+
+lightGrayLayer.addTo(map);
+
+
+L.control.layers(
+    {
+        'Light Gray': lightGrayLayer,
+        'OpenStreetMap': streetsLayer
+    }
+).addTo(map);
+
+        
+
+var universityIcon = L.icon({
+    iconUrl: 'university.png',  
+    iconSize:     [38, 38], 
+    iconAnchor:   [19, 19],
+    popupAnchor:  [0, -10] 
+});
+
+
+var marker1 = L.marker([41.980482545830746, -87.71658540884242], {icon: universityIcon, alt: 'BBH Building'}).addTo(map);
+var marker2 = L.marker([41.9798604519262, -87.71729351196439], {icon: universityIcon, alt: 'WTTW Building'}).addTo(map);
+var marker3 = L.marker([41.98254019774443, -87.71821619174062], {icon: universityIcon, alt: 'College of Business and Managment'}).addTo(map);
+var marker4 = L.marker([41.98115308381015, -87.71928280620595], {icon: universityIcon, alt: 'Salme Harju Steinberg Fine Arts Center Recital Hall'}).addTo(map);
+var marker5 = L.marker([41.979861049424315, -87.71976560382646], {icon: universityIcon, alt: 'The Nest Student Housing'}).addTo(map);
+
+
+
+var pic1 = '<img src="https://upload.wikimedia.org/wikipedia/commons/6/68/NEIU_Sci.jpg" alt="BBH - Bernard Brommel Hall at NEIU" width="250">';
+var pic2 = '<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDfX-g0Bj0PW1MG8x3B-8uz423JxtxnT8H3GwihBUqFw&s" alt="WTTW Building at NEIU" width="250">';
+var pic3 = '<img src="https://www.neiu.edu/sites/default/files/2024-06/COBM_Placard.jpg" alt="College of Business and Management at NEIU" width="250">';
+var pic4 = '<img src="https://www.purplepass.com/images/shared/data/22219/160223/event_photo.webp" alt="Salme Harju Steinberg Fine Arts Center Recital Hall" width="250">';
+var pic5 = '<img src="https://www.weisbuilders.com/wp-content/uploads/fly-images/1571/final-neiu-970x970-c.jpg.webp" alt="The Nest" width="250">';
+
+
+marker1.bindPopup('<p style="color:blue; font-weight:bold"> BBH Building - The science studies building </p>' + pic1);
+marker2.bindPopup('<p style="color:seagreen; font-weight:bold"> WTTW Studio - The Radio station building </p>' + pic2);
+marker3.bindPopup('<p style="color:blue; font-weight:bold"> College of Business and Management - Business and management classes are taught here </p>' + pic3);
+marker4.bindPopup('<p style="color:seagreen; font-weight:bold">SHS Fine Arts Center - Recitals, performances, music practice, and assemblies here</p>' + pic4);
+marker5.bindPopup('<p style="color:blue; font-weight:bold">The Nest - Students who live on campus stay here </p>' + pic5);
+
+
+	  </script>
+    </body>
+</html>
